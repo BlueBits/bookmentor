@@ -1,0 +1,105 @@
+<?php
+
+namespace BlueBits\JakuzaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="prodotto")
+ */
+class Prodotto 
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    protected $nome;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $prezzo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Categoria", inversedBy="prodotti")
+     * @ORM\JoinTable(name="prodotti_categorie")
+     */
+    protected $categorie;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nome
+     *
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * Get nome
+     *
+     * @return string 
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * Set prezzo
+     *
+     * @param integer $prezzo
+     */
+    public function setPrezzo($prezzo)
+    {
+        $this->prezzo = $prezzo;
+    }
+
+    /**
+     * Get prezzo
+     *
+     * @return integer 
+     */
+    public function getPrezzo()
+    {
+        return $this->prezzo;
+    }
+
+    /**
+     * Set categoria
+     *
+     * @param BlueBits\JakuzaBundle\Entity\Categoria $categoria
+     */
+    public function setCategoria(\BlueBits\JakuzaBundle\Entity\Categoria $categoria)
+    {
+        $this->categoria = $categoria;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return BlueBits\JakuzaBundle\Entity\Categoria 
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+}
